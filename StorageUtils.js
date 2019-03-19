@@ -6,39 +6,39 @@ class StorageUtils {
   getItem (key) {
     let value
     if (sessionStorage) {
-      value = sessionStorage.get(key)
+      value = sessionStorage._get(key)
     } else if (localStorage) {
-      value = localStorage.get(key)
+      value = localStorage._get(key)
     } else {
-      value = cookieStorage.get(key)
+      value = cookieStorage._get(key)
     }
     return value
   }
   setItem (key, value) {
     if (sessionStorage) {
-      sessionStorage.save(key, value)
+      sessionStorage._set(key, value)
     } else if (localStorage) {
-      localStorage.save(key, value)
+      localStorage._set(key, value)
     } else {
-      cookieStorage.save(key, value)
+      cookieStorage._set(key, value)
     }
   }
   removeItem (key) {
     if (sessionStorage) {
-      sessionStorage.delete(key)
+      sessionStorage._delete(key)
     } else if (localStorage) {
-      localStorage.delete(key)
+      localStorage._delete(key)
     } else {
-      cookieStorage.delete(key)
+      cookieStorage._delete(key)
     }
   }
   clear () {
     if (sessionStorage) {
-      sessionStorage.deleteAll()
+      sessionStorage._deleteAll()
     } else if (localStorage) {
-      localStorage.deleteAll()
+      localStorage._deleteAll()
     } else {
-      cookieStorage.deleteAll()
+      cookieStorage._deleteAll()
     }
   }
 }

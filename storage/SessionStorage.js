@@ -2,7 +2,7 @@ import { Storage } from './Storage.js'
 
 class SessionStorage extends Storage {
   _get(key) {
-    const value = sessionStorage.getItem(key)
+    const value = window.sessionStorage.getItem(key)
     try {
       return JSON.parse(value)
     } catch(e) {
@@ -11,10 +11,16 @@ class SessionStorage extends Storage {
   }
   _set(key, value) {
     if (this.getType(value) === 'Object') {
-      sessionStorage.setItem(key, JSON.stringify(value))
+      window.sessionStorage.setItem(key, JSON.stringify(value))
     } else {
-      sessionStorage.setItem(key, value)
+      window.sessionStorage.setItem(key, value)
     }
+  }
+  _delete (key) {
+    window.sessionStorage.removeItem(key)
+  }
+  _deleteAll () {
+    window.sessionStorage.clear()
   }
 }
 
